@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User319183's File Hosting</title>
+  <meta name="description" content="Free and unlimited file hosting provided by User319183's File Hosting service." />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://user319183.github.io/" />
+  <meta property="og:title" content="User319183's Image Hosting" />
+  <meta property="og:description"
+    content="Free and unlimited image hosting provided by User319183's File Hosting service." />
+  <meta property="og:image" content="https://User319183.github.io/assets/profile.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="text-center">Custom File Hosting</h2>
+    <p class="text-center text-muted">
+      Free & Unlimited File Hosting | Developed by User319183
+    </p>
+    <hr />
+
+    <form id="fileUploadForm" class="text-center">
+      <div id="dropzone" class="upload-drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
+        <span>Drop files here or click to upload</span>
+      </div>
+      <!-- Hidden file input for handling file selection after agreeing to TOS -->
+      <input type="file" name="file" id="fileInput" accept="image/png, image/jpeg, image/jpg, image/gif" hidden />
+    </form>
+    <iframe src="tos.html" class="tos-iframe"></iframe>
+    <div class="tos-agreement">
+      <input type="checkbox" id="tosCheckbox" />
+      <label for="tosCheckbox">I agree to the Terms of Service</label>
+    </div>
+    <div id="uploadStatus" style="margin-top: 20px"></div>
+
+    <hr />
+    <p class="text-center">
+      © 2024 User319183's File Hosting | Developed by User319183
+    </p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

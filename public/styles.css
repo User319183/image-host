@@ -1,0 +1,107 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #3c3836;
+  color: #ebdbb2;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #504945;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.upload-btn-wrapper {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #7c6f64;
+  color: #fdf6e3;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-btn-wrapper:hover {
+  background-color: #665c54;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.upload-btn-wrapper.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+#dropzone {
+  border: 2px dashed #cccccc;
+  border-radius: 5px;
+  padding: 30px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#dropzone:hover {
+  border-color: #aaaaaa;
+}
+
+#dropzone span {
+  display: block;
+  text-align: center;
+  color: #cccccc;
+}
+
+iframe.tos-iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.tos-body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #fdf6e3;
+  color: #3c3836;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.tos-body h1,
+.tos-body h2 {
+  color: #b57614;
+}
+
+.tos-body p,
+.tos-body ul,
+.tos-body li {
+  color: #3c3836;
+}
+
+.tos-body a {
+  color: #3c3836;
+}
+
+.tos-body footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.tos-body footer a {
+  color: #3c3836;
+  text-decoration: none;
+}
+
+.tos-body footer a:hover {
+  text-decoration: underline;
+}
