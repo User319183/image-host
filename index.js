@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
 
-// Assume blacklist.json is stored securely outside of the public directory
+// if blacklist.json is stored securely outside of the public directory
 const blacklistFilePath = path.join(__dirname, "../config/blacklist.json");
 let blacklistedIps = new Set();
 
@@ -28,7 +28,7 @@ const loadBlacklist = () => {
 loadBlacklist();
 setInterval(loadBlacklist, 60000); // Refresh interval in milliseconds
 
-// Middleware to check against the blacklist
+// Middleware to check against the blacklist, prevent abuse
 const blacklistMiddleware = (req, res, next) => {
   const ip =
     req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
@@ -84,9 +84,8 @@ app.post("/upload", upload.single("file"), (req, res) => {
   const userAgent = req.headers["user-agent"];
   const logMessage = `Uploaded file: ${file.originalname}, Size: ${file.size}, IP: ${ip}, User Agent: ${userAgent}`;
 
-  // Log file, IP, and User Agent to the console
+  // Log file, IP, and User Agent to the console and send to the webhook
   console.log(logMessage);
-  // Send log information to Discord webhook
   sendLogToDiscord(logMessage);
   res.status(200).json({
     message: "Upload successful!",
