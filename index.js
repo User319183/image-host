@@ -6,9 +6,14 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import fetch from "node-fetch";
+import favicon from "serve-favicon";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
+
+// Use serve-favicon middleware to serve favicon.ico
+app.use(favicon(path.join(__dirname, "assets", "favicon.ico")));
 
 // if blacklist.json is stored securely outside of the public directory
 const blacklistFilePath = path.join(__dirname, "../config/blacklist.json");
@@ -30,8 +35,7 @@ setInterval(loadBlacklist, 60000); // Refresh interval in milliseconds
 
 // Middleware to check against the blacklist, prevent abuse
 const blacklistMiddleware = (req, res, next) => {
-  const ip =
-    req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  const ip = req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   if (blacklistedIps.has(ip)) {
     return res.status(403).send("Access denied.");
   }
@@ -71,16 +75,13 @@ app.use("/uploads", express.static("uploads"));
 app.post("/upload", upload.single("file"), (req, res) => {
   const tosAgreed = req.body.tosAgreed === "true";
   if (!tosAgreed) {
-    return res
-      .status(400)
-      .send("You must agree to the terms of service before uploading.");
+    return res.status(400).send("You must agree to the terms of service before uploading.");
   }
   const file = req.file;
   if (!file) {
     return res.status(400).send("No file uploaded.");
   }
-  const ip =
-    req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  const ip = req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   const userAgent = req.headers["user-agent"];
   const logMessage = `Uploaded file: ${file.originalname}, Size: ${file.size}, IP: ${ip}, User Agent: ${userAgent}`;
 
